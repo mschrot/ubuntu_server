@@ -1,73 +1,150 @@
-# 💡 Ubuntu/Linux Tutorial
+🚀 Ubuntu Mini Tutorial auf Ubuntu 22.04 / 24.04
+
 Einfach diesen Text in eine .txt Datei kopieren und speichern ✅
-________________________________________
 
-👨 Benutzer erstellen
+--------------------------------------------------
+
+📦 Features
+
+- 👤 Benutzerverwaltung (erstellen, löschen, sudo)
+- 🔑 Passwortänderung
+- 📁 Datei- & Ordnerverwaltung
+- 📂 Navigation im Terminal
+- 🛡️ Sudo-Rechte prüfen
+- ⚡ Einfache & schnelle Befehle
+
+--------------------------------------------------
+
+🧰 Voraussetzungen
+
+- Ubuntu 22.04 oder 24.04
+- Root oder sudo Zugriff
+- Terminal-Grundkenntnisse
+- Keine zusätzliche Software nötig
+
+--------------------------------------------------
+
+🔥 Wichtige Befehle
+
+Benutzerverwaltung:
 sudo adduser BENUTZERNAME
-➡️ Erstellt neuen Benutzer + fragt nach Passwort
-________________________________________
-
-🛡️ Benutzer zu sudo hinzufügen
 sudo usermod -aG sudo BENUTZERNAME
-
-✔ Überprüfen Admin-Rechte: sudo whoami
-✅ du hast sudo-Rechte: root
-_______________________________________
-
-🔎 Alle Sudo-Benutzer zeigen:
-getent group sudo
-________________________________________
-
-🔑 Passwort ändern
-Eigenes Passwort:
-passwd
-Für anderen Benutzer:
-sudo passwd BENUTZERNAME
-________________________________________
-
-❌ Benutzer löschen
-Nur Benutzer:
 sudo deluser BENUTZERNAME
-Mit Home-Ordner:
 sudo deluser --remove-home BENUTZERNAME
-________________________________________
 
-📁 Ordner erstellen
+Passwort:
+passwd
+sudo passwd BENUTZERNAME
+
+--------------------------------------------------
+
+📁 Ordner & Dateien
+
+Ordner erstellen:
 mkdir ORDNERNAME
-Mehrere:
 mkdir ordner1 ordner2
-________________________________________
 
-📄 Datei erstellen
-Leere Datei:
+Datei erstellen:
 touch datei.txt
-Text in Datei schreiben:
 echo "Hallo Welt" > datei.txt
-________________________________________
 
-❌ Ordner löschen
+Löschen:
 rmdir ordnername
-
-⚠️ Ordner mit Inhalt löschen
-rm -r ordnername
-________________________________________
-
-❌ Datei löschen
+rm -r ordnername (⚠️ mit Inhalt)
 rm datei.txt
-_______________________________________
 
-📜 Dateien anzeigen
-ls
-Mit Details:
-ls -l
-Versteckte Dateien:
-ls -la
-________________________________________
+--------------------------------------------------
 
 📂 Navigation
-Aktuelles Verzeichnis:
+
+Aktueller Pfad:
 pwd
+
 Ordner wechseln:
 cd ORDNERNAME
-Zurück:
 cd ..
+
+Dateien anzeigen:
+ls
+ls -l
+ls -la
+
+--------------------------------------------------
+
+🔎 Sudo-Admin prüfen
+
+Alle Sudo-Benutzer zeigen:
+getent group sudo
+
+Admin-Rechte testen:
+sudo whoami
+(Ausgabe: root = ✅)
+
+--------------------------------------------------
+
+⚠️ Wichtige Hinweise
+
+- BENUTZERNAME durch eigenen Namen ersetzen
+- Bei sudo Befehlen Passwort eingeben
+- rm -r löscht endgültig (kein Papierkorb)
+- Keine Leerzeichen in Ordnernamen
+
+--------------------------------------------------
+
+🔒 Sicherheit
+
+- Starke Passwörter verwenden
+- Nur notwendige Benutzer anlegen
+- Alte Benutzer regelmäßig löschen
+- Sudo-Rechte nur vertrauenswürdigen Nutzern geben
+
+--------------------------------------------------
+
+🧪 Beispiel Workflow
+
+1. Benutzer anlegen:
+sudo adduser mschrot
+
+2. Sudo-Rechte geben:
+sudo usermod -aG sudo mschrot
+
+3. Prüfen:
+getent group sudo
+
+4. Mit max einloggen:
+su - mschrot
+
+--------------------------------------------------
+
+🛠️ Häufige Befehle
+
+sudo whoami           # Prüft Admin-Rechte
+pwd                   # Zeigt aktuellen Pfad
+ls -la                # Zeigt alle Dateien
+cd ..                 # Ein Ordner zurück
+clear                 # Bildschirm leeren
+
+--------------------------------------------------
+
+🔗 Links
+
+Ubuntu Docs:
+https://help.ubuntu.com
+
+Linux Terminal Guide:
+https://ubuntu.com/tutorials/command-line-for-beginners
+
+YouTube Tutorials:
+https://www.youtube.com/@mschrot
+
+--------------------------------------------------
+
+📌 Credits
+
+Erstellt von Michael Schrot
+
+--------------------------------------------------
+
+❤️ Support
+
+⭐ Repo liken & teilen
