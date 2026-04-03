@@ -26,59 +26,147 @@ Einfach diesen Text in eine .txt Datei kopieren und speichern ✅
 
 🔥 Wichtige Befehle
 
-Benutzerverwaltung:
-sudo adduser BENUTZERNAME
-sudo usermod -aG sudo BENUTZERNAME
-sudo deluser BENUTZERNAME
-sudo deluser --remove-home BENUTZERNAME
+Benutzer erstellen:
 
-Passwort:
+sudo adduser BENUTZERNAME
+
+Benutzer zu sudo hinzufügen:
+
+sudo usermod -aG sudo BENUTZERNAME
+
+Admin-Rechte prüfen:
+
+sudo whoami
+
+Alle Sudo-Benutzer zeigen:
+
+getent group sudo
+
+--------------------------------------------------
+
+🔑 Passwort ändern
+
+Eigenes Passwort:
+
 passwd
+
+Passwort für anderen Benutzer:
+
 sudo passwd BENUTZERNAME
 
 --------------------------------------------------
 
-📁 Ordner & Dateien
+❌ Benutzer löschen
 
-Ordner erstellen:
+Nur Benutzer:
+
+sudo deluser BENUTZERNAME
+
+Mit Home-Ordner:
+
+sudo deluser --remove-home BENUTZERNAME
+
+--------------------------------------------------
+
+📁 Ordner erstellen
+
+Einzelner Ordner:
+
 mkdir ORDNERNAME
+
+Mehrere Ordner:
+
 mkdir ordner1 ordner2
 
-Datei erstellen:
+--------------------------------------------------
+
+📄 Datei erstellen
+
+Leere Datei:
+
 touch datei.txt
+
+Text in Datei schreiben:
+
 echo "Hallo Welt" > datei.txt
 
-Löschen:
+--------------------------------------------------
+
+❌ Löschen
+
+Leeren Ordner löschen:
+
 rmdir ordnername
-rm -r ordnername (⚠️ mit Inhalt)
+
+Ordner mit Inhalt löschen (⚠️ vorsichtig!):
+
+rm -r ordnername
+
+Datei löschen:
+
 rm datei.txt
 
 --------------------------------------------------
 
 📂 Navigation
 
-Aktueller Pfad:
+Aktuelles Verzeichnis anzeigen:
+
 pwd
 
 Ordner wechseln:
+
 cd ORDNERNAME
+
+Einen Ordner zurück:
+
 cd ..
 
 Dateien anzeigen:
+
 ls
+
+Mit Details:
+
 ls -l
+
+Mit versteckten Dateien:
+
 ls -la
 
 --------------------------------------------------
 
-🔎 Sudo-Admin prüfen
+🧪 Beispiel Workflow
 
-Alle Sudo-Benutzer zeigen:
+1. Benutzer anlegen:
+
+sudo adduser max
+
+2. Sudo-Rechte geben:
+
+sudo usermod -aG sudo max
+
+3. Prüfen:
+
 getent group sudo
 
-Admin-Rechte testen:
-sudo whoami
-(Ausgabe: root = ✅)
+4. Zu max wechseln:
+
+su - max
+
+--------------------------------------------------
+
+🛠️ Häufige Befehle (Übersicht)
+
+sudo whoami           # Prüft Admin-Rechte
+
+pwd                   # Zeigt aktuellen Pfad
+
+ls -la                # Zeigt alle Dateien an
+
+cd ..                 # Ein Ordner zurück
+
+clear                 # Bildschirm leeren
 
 --------------------------------------------------
 
@@ -87,7 +175,7 @@ sudo whoami
 - BENUTZERNAME durch eigenen Namen ersetzen
 - Bei sudo Befehlen Passwort eingeben
 - rm -r löscht endgültig (kein Papierkorb)
-- Keine Leerzeichen in Ordnernamen
+- Keine Leerzeichen in Ordnernamen verwenden
 
 --------------------------------------------------
 
@@ -97,32 +185,6 @@ sudo whoami
 - Nur notwendige Benutzer anlegen
 - Alte Benutzer regelmäßig löschen
 - Sudo-Rechte nur vertrauenswürdigen Nutzern geben
-
---------------------------------------------------
-
-🧪 Beispiel Workflow
-
-1. Benutzer anlegen:
-sudo adduser mschrot
-
-2. Sudo-Rechte geben:
-sudo usermod -aG sudo mschrot
-
-3. Prüfen:
-getent group sudo
-
-4. Mit max einloggen:
-su - mschrot
-
---------------------------------------------------
-
-🛠️ Häufige Befehle
-
-sudo whoami           # Prüft Admin-Rechte
-pwd                   # Zeigt aktuellen Pfad
-ls -la                # Zeigt alle Dateien
-cd ..                 # Ein Ordner zurück
-clear                 # Bildschirm leeren
 
 --------------------------------------------------
 
