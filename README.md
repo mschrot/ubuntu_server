@@ -6,7 +6,7 @@ Einfach diesen Text in eine .txt Datei kopieren und speichern ✅
 
 📦 Features
 
-- 👤 Benutzerverwaltung (erstellen, löschen, sudo)
+- 👨 Benutzerverwaltung (erstellen, löschen, sudo)
 - 🔑 Passwortänderung
 - 📁 Datei- & Ordnerverwaltung
 - 📂 Navigation im Terminal
