@@ -1,0 +1,35 @@
+services:
+  glances:
+    image: nicolargo/glances:latest
+    container_name: glances
+    restart: unless-stopped
+    pid: host
+    ports:
+      - "5090:61208"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /etc/os-release:/etc/os-release:ro
+    environment:
+      - GLANCES_OPT=-w
+	  
+	  
+------------------------------------------------
+Domain Names			api.itgrundlagen.com
+Scheme					http
+Forward Hostname/IP		212.227.13.116
+Forward Port			5090
+
+
+Websockets Support		✅ aktivieren
+Cache Assets			❌ deaktivieren
+Block Common Exploits	✅ aktivieren
+Access List	Public		✅ lassen
+------------------------------------------------
+
+
+
+SSL 					Certificate	Let's Encrypt (oder vorhandenes Zertifikat)
+Force SSL				✅ aktivieren
+HTTP/2 Support			✅ aktivieren
+HSTS Enabled			❌ deaktivieren (für Test)
+HSTS Sub-domains		❌ deaktivieren
