@@ -1,212 +1,189 @@
-🚀 Ubuntu Mini Tutorial auf Ubuntu 22.04 / 24.04
+````md
+# 🔐 SSH Security Toolkit
 
-Einfach diesen Text in eine .txt Datei kopieren und speichern ✅
+Ein einfaches, aber leistungsstarkes Toolkit zur Absicherung von Linux-Servern (Ubuntu/Debian) mit Fokus auf SSH Hardening und sichere Schlüsselverwaltung.
 
---------------------------------------------------
+---
 
-📦 Features
+## 📖 Beschreibung
 
-- 👨 Benutzerverwaltung (erstellen, löschen, sudo)
-- 🔑 Passwortänderung
-- 📁 Datei- & Ordnerverwaltung
-- 📂 Navigation im Terminal
-- 🛡️ Sudo-Rechte prüfen
-- ⚡ Einfache & schnelle Befehle
+```text
+# ==============================================================================
+#
+# Beschreibung:
+#   Erstellt einen SSH-Key für einen bestimmten Benutzer und speichert
+#   den privaten Schlüssel im HOME-Verzeichnis des Benutzers.
+#   Wenn der Key für einen ANDEREN Benutzer erstellt wird, wird zusätzlich
+#   eine Kopie im /tmp Verzeichnis für sicheren Export erstellt.
+#   Für den eigenen Benutzer entfällt die Kopie im /tmp.
+#
+# Verwendung:
+#   sudo ./ssh-key.sh                     # Standard: ed25519 für aktuellen Benutzer
+#   sudo ./ssh-key.sh rsa                 # RSA für aktuellen Benutzer
+#   sudo ./ssh-key.sh ed                  # ed25519 für aktuellen Benutzer
+#   sudo ./ssh-key.sh benutzername        # ed25519 für bestimmten Benutzer
+#   sudo ./ssh-key.sh rsa benutzername    # RSA für bestimmten Benutzer
+#   sudo ./ssh-key.sh ed benutzername     # ed25519 für bestimmten Benutzer
+#
+# ==============================================================================
+```
 
---------------------------------------------------
+---
 
-🧰 Voraussetzungen
+## 🔒 SSH-Einstellungen (Systemweit)
 
-- Ubuntu 22.04 oder 24.04
-- Root oder sudo Zugriff
-- Terminal-Grundkenntnisse
-- Keine zusätzliche Software nötig
+```bash
+#----------------------- 🔒 SSH EINSTELLUNGEN (Systemweit) ----------------------------
+# Diese Einstellungen gelten für ALLE Benutzer der Maschine!
 
---------------------------------------------------
+# Basis-Härtung
+DISABLE_PASSWORD_LOGIN="yes"      # 'yes' = Nur SSH-Keys erlaubt (Kein Passwort)
+DISABLE_ROOT_SSH="no"             # 'yes' = Root-Login verbieten
+FORCE_PUBKEY_ONLY="yes"           # 'yes' = Nur Public-Key Auth (erzwingen)
 
-🔥 Wichtige Befehle
+# Netzwerk
+SET_CUSTOM_SSH_PORT="no"          # 'yes' = Anderen SSH-Port nutzen
+CUSTOM_SSH_PORT="222"             # Z.B.: 222 (nur wenn oben 'yes')
 
-Benutzer erstellen:
+# Forwarding (Sicherheit)
+DISABLE_X11_FORWARDING="yes"      # 'yes' = X11 deaktivieren (meist nicht gebraucht)
+DISABLE_TCP_FORWARDING="yes"      # 'yes' = Port-Weiterleitung verbieten
+DISABLE_AGENT_FORWARDING="yes"    # 'yes' = Agent-Forwarding verbieten
 
-sudo adduser BENUTZERNAME
+# Features
+ALLOW_SFTP="yes"                  # 'yes' = SFTP erlauben (internal-sftp)
 
-Benutzer zu sudo hinzufügen:
+# =========================
+# ENDE PARAMETER
+# =========================
+```
 
-sudo usermod -aG sudo BENUTZERNAME
+---
 
-Admin-Rechte prüfen:
+# 📦 Installation & Nutzung
 
-sudo whoami
+### 1. Mehrere sudo-Benutzer erstellen (wenn nur Root vorhanden ist)
 
-Alle Sudo-Benutzer zeigen:
+```bash
+sudo adduser admin1
+sudo adduser admin2
+sudo adduser admin3
+```
 
-getent group sudo
+### 2. Benutzer zur sudo-Gruppe hinzufügen
 
---------------------------------------------------
+```bash
+sudo usermod -aG sudo admin1
+```
 
-🔑 Passwort ändern
+### 3. Alle Benutzer anzeigen
 
-Eigenes Passwort:
+```bash
+cat /etc/passwd
+```
 
-passwd
+### 4. Passwort neu setzen oder ändern
 
-Passwort für anderen Benutzer:
+```bash
+sudo passwd admin2
+```
 
-sudo passwd BENUTZERNAME
+### 5. Benutzer löschen
 
---------------------------------------------------
+```bash
+sudo deluser admin2
+```
 
-❌ Benutzer löschen
+### 6. Benutzer inklusive Home-Verzeichnis löschen
 
-Nur Benutzer:
+```bash
+sudo deluser --remove-home admin3
+```
 
-sudo deluser BENUTZERNAME
+### 7. Skripte von GitHub herunterladen
 
-Mit Home-Ordner:
+Kopiere den Inhalt der Skripte direkt aus diesem Repository.
 
-sudo deluser --remove-home BENUTZERNAME
+### 8. Neue Skriptdateien erstellen
 
---------------------------------------------------
+```bash
+sudo nano ssh-key.sh
+sudo nano policy_script.sh
+```
 
-📁 Ordner erstellen
+### 9. Skripte konfigurieren
 
-Einzelner Ordner:
+Passe insbesondere die Einstellungen in **policy_script.sh** an deine Umgebung an.
 
-mkdir ORDNERNAME
+### 10. Skripte ausführbar machen
 
-Mehrere Ordner:
+```bash
+chmod +x ssh-key.sh
+chmod +x policy_script.sh
+```
 
-mkdir ordner1 ordner2
+---
 
---------------------------------------------------
+# 🔑 SSH-Key erstellen (Empfohlen zuerst!)
 
-📄 Datei erstellen
+```bash
+sudo ./ssh-key.sh
+```
 
-Leere Datei:
+👉 Erstellt einen sicheren SSH-Key für deinen Benutzer.
 
-touch datei.txt
+---
 
-Text in Datei schreiben:
+# 🛡️ SSH Hardening anwenden
 
-echo "Hallo Welt" > datei.txt
+```bash
+sudo ./policy_script.sh
+```
 
---------------------------------------------------
+## ⚠️ WICHTIG
 
-❌ Löschen
+- Stelle sicher, dass du dich bereits per SSH-Key verbinden kannst.
+- Andernfalls kannst du dich von deinem Server aussperren.
 
-Leeren Ordner löschen:
+---
 
-rmdir ordnername
+# 📺 Credits
 
-Ordner mit Inhalt löschen (⚠️ vorsichtig!):
+Erstellt von **Michael Schrot**
 
-rm -r ordnername
+**YouTube**
 
-Datei löschen:
-
-rm datei.txt
-
---------------------------------------------------
-
-📂 Navigation
-
-Aktuelles Verzeichnis anzeigen:
-
-pwd
-
-Ordner wechseln:
-
-cd ORDNERNAME
-
-Einen Ordner zurück:
-
-cd ..
-
-Dateien anzeigen:
-
-ls
-
-Mit Details:
-
-ls -l
-
-Mit versteckten Dateien:
-
-ls -la
-
---------------------------------------------------
-
-🧪 Beispiel Workflow
-
-1. Benutzer anlegen:
-
-sudo adduser max
-
-2. Sudo-Rechte geben:
-
-sudo usermod -aG sudo max
-
-3. Prüfen:
-
-getent group sudo
-
-4. Zu max wechseln:
-
-su - max
-
---------------------------------------------------
-
-🛠️ Häufige Befehle (Übersicht)
-
-sudo whoami           # Prüft Admin-Rechte
-
-pwd                   # Zeigt aktuellen Pfad
-
-ls -la                # Zeigt alle Dateien an
-
-cd ..                 # Ein Ordner zurück
-
-clear                 # Bildschirm leeren
-
---------------------------------------------------
-
-⚠️ Wichtige Hinweise
-
-- BENUTZERNAME durch eigenen Namen ersetzen
-- Bei sudo Befehlen Passwort eingeben
-- rm -r löscht endgültig (kein Papierkorb)
-- Keine Leerzeichen in Ordnernamen verwenden
-
---------------------------------------------------
-
-🔒 Sicherheit
-
-- Starke Passwörter verwenden
-- Nur notwendige Benutzer anlegen
-- Alte Benutzer regelmäßig löschen
-- Sudo-Rechte nur vertrauenswürdigen Nutzern geben
-
---------------------------------------------------
-
-🔗 Links
-
-Ubuntu Docs:
-https://help.ubuntu.com
-
-Linux Terminal Guide:
-https://ubuntu.com/tutorials/command-line-for-beginners
-
-YouTube Tutorials:
 https://www.youtube.com/@mschrot
 
---------------------------------------------------
+**GitHub**
 
-📌 Credits
+https://github.com/mschrot/
 
-Erstellt von Michael Schrot
+---
 
---------------------------------------------------
+# ⭐ Support
 
-❤️ Support
+Wenn dir das Projekt hilft:
 
-⭐ Repo liken & teilen
+- ⭐ Repository mit einem Star unterstützen
+- 👍 Video liken
+- 📢 Projekt teilen
+
+---
+
+# 📜 Lizenz
+
+Dieses Projekt steht zur freien Nutzung bereit.
+
+Anpassungen und Verbesserungen sind jederzeit willkommen.
+
+---
+
+# 💡 Tipp
+
+Kombiniere beide Skripte für maximale Sicherheit:
+
+1. SSH-Key erstellen
+2. SSH-Verbindung testen
+3. SSH-Hardening anwenden
+````
