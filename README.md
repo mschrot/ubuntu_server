@@ -1,13 +1,16 @@
-````md
-# 🔐 SSH Security Toolkit
+```html
+<h1 align="center">🔐 SSH Security Toolkit</h1>
 
-Ein einfaches, aber leistungsstarkes Toolkit zur Absicherung von Linux-Servern (Ubuntu/Debian) mit Fokus auf SSH Hardening und sichere Schlüsselverwaltung.
+<p align="center">
+Ein einfaches, aber leistungsstarkes Toolkit zur Absicherung von Linux-Servern (Ubuntu/Debian)
+mit Fokus auf SSH Hardening und sichere Schlüsselverwaltung.
+</p>
 
----
+<hr>
 
-## 📖 Beschreibung
+<h2>📖 Beschreibung</h2>
 
-```text
+<pre>
 # ==============================================================================
 #
 # Beschreibung:
@@ -26,13 +29,13 @@ Ein einfaches, aber leistungsstarkes Toolkit zur Absicherung von Linux-Servern (
 #   sudo ./ssh-key.sh ed benutzername     # ed25519 für bestimmten Benutzer
 #
 # ==============================================================================
-```
+</pre>
 
----
+<hr>
 
-## 🔒 SSH-Einstellungen (Systemweit)
+<h2>🔒 SSH Einstellungen (Systemweit)</h2>
 
-```bash
+<pre>
 #----------------------- 🔒 SSH EINSTELLUNGEN (Systemweit) ----------------------------
 # Diese Einstellungen gelten für ALLE Benutzer der Maschine!
 
@@ -56,134 +59,145 @@ ALLOW_SFTP="yes"                  # 'yes' = SFTP erlauben (internal-sftp)
 # =========================
 # ENDE PARAMETER
 # =========================
-```
+</pre>
 
----
+<hr>
 
-# 📦 Installation & Nutzung
+<h2>📦 Installation &amp; Nutzung</h2>
 
-### 1. Mehrere sudo-Benutzer erstellen (wenn nur Root vorhanden ist)
+<ol>
+<li>
+<b>Erstelle mehrere sudo-Benutzer (wenn nur Root vorhanden ist)</b>
 
-```bash
-sudo adduser admin1
+<pre>sudo adduser admin1
 sudo adduser admin2
-sudo adduser admin3
-```
+sudo adduser admin3</pre>
+</li>
 
-### 2. Benutzer zur sudo-Gruppe hinzufügen
+<li>
+<b>Benutzer zur sudo-Gruppe hinzufügen (System-Administrator)</b>
 
-```bash
-sudo usermod -aG sudo admin1
-```
+<pre>sudo usermod -aG sudo admin1</pre>
+</li>
 
-### 3. Alle Benutzer anzeigen
+<li>
+<b>Alle Benutzer anzeigen</b>
 
-```bash
-cat /etc/passwd
-```
+<pre>cat /etc/passwd</pre>
+</li>
 
-### 4. Passwort neu setzen oder ändern
+<li>
+<b>Passwort neu setzen oder ändern</b>
 
-```bash
-sudo passwd admin2
-```
+<pre>sudo passwd admin2</pre>
+</li>
 
-### 5. Benutzer löschen
+<li>
+<b>Benutzer löschen</b>
 
-```bash
-sudo deluser admin2
-```
+<pre>sudo deluser admin2</pre>
+</li>
 
-### 6. Benutzer inklusive Home-Verzeichnis löschen
+<li>
+<b>Benutzer inklusive Home-Verzeichnis löschen</b>
 
-```bash
-sudo deluser --remove-home admin3
-```
+<pre>sudo deluser --remove-home admin3</pre>
+</li>
 
-### 7. Skripte von GitHub herunterladen
+<li>
+Kopiere die Skripte direkt von GitHub.
+</li>
 
-Kopiere den Inhalt der Skripte direkt aus diesem Repository.
+<li>
+<b>Neue Skriptdateien erstellen</b>
 
-### 8. Neue Skriptdateien erstellen
+<pre>sudo nano ssh-key.sh
+sudo nano policy_script.sh</pre>
+</li>
 
-```bash
-sudo nano ssh-key.sh
-sudo nano policy_script.sh
-```
+<li>
+Konfiguriere <b>policy_script.sh</b> nach deinen Anforderungen.
+</li>
 
-### 9. Skripte konfigurieren
+<li>
+<b>Skripte ausführbar machen</b>
 
-Passe insbesondere die Einstellungen in **policy_script.sh** an deine Umgebung an.
+<pre>chmod +x ssh-key.sh
+chmod +x policy_script.sh</pre>
+</li>
+</ol>
 
-### 10. Skripte ausführbar machen
+<hr>
 
-```bash
-chmod +x ssh-key.sh
-chmod +x policy_script.sh
-```
+<h2>🔑 SSH-Key erstellen (Empfohlen zuerst)</h2>
 
----
+<pre>sudo ./ssh-key.sh</pre>
 
-# 🔑 SSH-Key erstellen (Empfohlen zuerst!)
+<p>👉 Erstellt einen sicheren SSH-Key für deinen Benutzer.</p>
 
-```bash
-sudo ./ssh-key.sh
-```
+<hr>
 
-👉 Erstellt einen sicheren SSH-Key für deinen Benutzer.
+<h2>🛡️ SSH Hardening anwenden</h2>
 
----
+<pre>sudo ./policy_script.sh</pre>
 
-# 🛡️ SSH Hardening anwenden
+<h3>⚠️ WICHTIG</h3>
 
-```bash
-sudo ./policy_script.sh
-```
+<ul>
+<li>Stelle sicher, dass du dich bereits per SSH-Key verbinden kannst.</li>
+<li>Andernfalls kannst du dich von deinem Server aussperren.</li>
+</ul>
 
-## ⚠️ WICHTIG
+<hr>
 
-- Stelle sicher, dass du dich bereits per SSH-Key verbinden kannst.
-- Andernfalls kannst du dich von deinem Server aussperren.
+<h2>📺 Credits</h2>
 
----
+<p>
+Erstellt von <b>Michael Schrot</b>
+</p>
 
-# 📺 Credits
-
-Erstellt von **Michael Schrot**
-
-**YouTube**
-
+<p>
+<b>YouTube</b><br>
 https://www.youtube.com/@mschrot
+</p>
 
-**GitHub**
+<p>
+<b>GitHub</b><br>
+https://github.com/mschrot
+</p>
 
-https://github.com/mschrot/
+<hr>
 
----
+<h2>⭐ Support</h2>
 
-# ⭐ Support
+<p>Wenn dir das Projekt hilft:</p>
 
-Wenn dir das Projekt hilft:
+<ul>
+<li>⭐ Repository mit einem Star unterstützen</li>
+<li>👍 Video liken</li>
+<li>📢 Projekt teilen</li>
+</ul>
 
-- ⭐ Repository mit einem Star unterstützen
-- 👍 Video liken
-- 📢 Projekt teilen
+<hr>
 
----
+<h2>📜 Lizenz</h2>
 
-# 📜 Lizenz
-
+<p>
 Dieses Projekt steht zur freien Nutzung bereit.
-
 Anpassungen und Verbesserungen sind jederzeit willkommen.
+</p>
 
----
+<hr>
 
-# 💡 Tipp
+<h2>💡 Tipp</h2>
 
+<p>
 Kombiniere beide Skripte für maximale Sicherheit:
+</p>
 
-1. SSH-Key erstellen
-2. SSH-Verbindung testen
-3. SSH-Hardening anwenden
-````
+<ol>
+<li>SSH-Key erstellen</li>
+<li>SSH-Verbindung testen</li>
+<li>SSH-Hardening anwenden</li>
+</ol>
+```
