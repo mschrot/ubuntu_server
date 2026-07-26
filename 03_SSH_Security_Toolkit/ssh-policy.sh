@@ -39,12 +39,12 @@ PASSWORDLESS_SUDO_USER="ubuntu"   # Welcher User darf NOPASSWD nutzen
 
 # Basis-Härtung
 DISABLE_PASSWORD_LOGIN="yes"      # 'yes' = Nur SSH-Keys erlaubt (Kein Passwort)
-DISABLE_ROOT_SSH="yes"            # 'yes' = Root-Login verbieten
+DISABLE_ROOT_SSH="no"             # 'yes' = Root-Login verbieten
 FORCE_PUBKEY_ONLY="yes"           # 'yes' = Nur Public-Key Auth (erzwingen)
 
 # Netzwerk
 SET_CUSTOM_SSH_PORT="no"          # 'yes' = Anderen SSH-Port nutzen
-CUSTOM_SSH_PORT="2077"            # Z.B.: 2077 (nur wenn oben 'yes')
+CUSTOM_SSH_PORT="222"             # Z.B.: 222 (nur wenn oben 'yes')
 
 # Forwarding (Sicherheit)
 DISABLE_X11_FORWARDING="yes"      # 'yes' = X11 deaktivieren (meist nicht gebraucht)
